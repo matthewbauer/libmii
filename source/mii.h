@@ -28,8 +28,6 @@
 #define WHITE						10
 #define BLACK						11
 
-char * MII_COLORS[12];
-
 typedef struct {
 	int invalid;            // doesn't seem to have any effect?
 	int female;
@@ -134,10 +132,8 @@ typedef struct {
 } Mii;
 #endif
 
-Mii miis[MII_MAX];
-
-void loadMiis_Wii();
-void loadMiis(char * data);
+Mii * loadMiis_Wii();
+Mii * loadMiis(char * data);
 
 #ifdef __cplusplus
    }

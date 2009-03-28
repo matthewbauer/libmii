@@ -7,10 +7,6 @@
 
 #define FACELIB_Wii "isfs://shared2/menu/FaceLib/RFL_DB.dat"
 
-Mii miis[MII_MAX];
-
-char * MII_COLORS[12] = {"red", "orange", "yellow", "green", "light green", "blue", "light blue", "pink", "purple", "brown", "white", "black"};
-
 char * read(char * path){
 	long Size;
 	FILE * File;
@@ -27,7 +23,7 @@ char * read(char * path){
 	return buffer;
 }
 
-void loadMiis_Wii(){
+Mii * loadMiis_Wii(){
 	if (ISFS_Initialize() == 0) {
 		//ISFS_SU(); Works for some people but not others ?
 
@@ -35,10 +31,10 @@ void loadMiis_Wii(){
 
 		char * data;
 		data = read(FACELIB_Wii);
-		if (data) loadMiis(data);
-
 		ISFS_Unmount();
+		if (data) return loadMiis(data);
 	}
+	return NULL;
 }
 
 Mii loadMii(int start, char * data){
@@ -57,7 +53,7 @@ Mii loadMii(int start, char * data){
 	}
 	mii.name[MII_NAME_LENGTH*2] = '\0';
 	for (c=0, d=0;d<MII_NAME_LENGTH;c++, d++){
-        tempChar = data[start + 0x02 + d * 2 + 1];
+        tempChar = data[start + 0x36 + d * 2 + 1];
         if(tempChar < 0x80)
             mii.creator[c] = tempChar;
         else {
@@ -330,7 +326,9 @@ Mii loadMii(int start, char * data){
 	return mii;
 }
 
-void loadMiis(char * data){
+Mii * loadMiis(char * data){
+	static Mii miis[MII_MAX];
+
 	if (data[0] == 'R' && data[1] == 'N' && data[2] == 'O' && data[3] == 'D'){
 		int start;
 		int n = 0;
@@ -345,4 +343,5 @@ void loadMiis(char * data){
 	} else {
 		printf("Mii version %c%c%c%c is not compatible with libmii\n", data[0], data[1], data[2], data[3]);
 	}
+	return miis;
 }

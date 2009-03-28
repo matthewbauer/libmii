@@ -7,6 +7,8 @@
 static void *xfb = NULL;
 static GXRModeObj *rmode = NULL;
 
+char * MII_COLORS[12] = {"red", "orange", "yellow", "green", "light green", "blue", "light blue", "pink", "purple", "brown", "white", "black"};
+
 void init(){
 	VIDEO_Init();
 	WPAD_Init();
@@ -20,6 +22,36 @@ void init(){
 	VIDEO_WaitVSync();
 	if(rmode->viTVMode&VI_NON_INTERLACE) VIDEO_WaitVSync();
 	printf("\x1b[2;0H");
+}
+
+void drawMii(Mii mii){
+	int offsetx = 30;
+	int offsety = 30;
+	int headx = offsetx + 2;
+	int heady = offsety + 5;
+	int eyex;
+	int eyex;
+
+	if (mii.faceShape == MII_FACE_TRIANGLE){
+		printf("\x1b[%i;%iH", headx, heady);
+		printf(	"  _______\n"
+				"〳          〵\n"
+				"|         |\n"
+				"|         |\n"
+				"〵          〳\n"
+				" 〵       〳\n"
+				"  〵    〳\n"
+				"   〵 〳\n"
+				"    Ѵ\n");
+		eyex = offsetx + 4;
+		eyey = offsety + 2;
+	}
+	//else if (mii.faceShape == MII_FACE_CIRCLE)
+	//else if (mii.faceShape == MII_FACE_OVAL)
+	//else if (mii.faceShape == MII_FACE_PENTAGON)
+	//else if (mii.faceShape == MII_FACE)
+	//else if (mii)
+	//if (mii.eyeType == )
 }
 
 void showMii(Mii mii){
@@ -38,19 +70,16 @@ void showMii(Mii mii){
 
 	if (mii.downloaded) printf("Downloaded\n");
 
-	printf("Weight: %i\n", mii.weight);
-	printf("Height: %i\n", mii.height);
-
 	printf("Favorite Color: %s\n", MII_COLORS[mii.favColor]);
 
-	//printf("Faceshape: %i\n", mii.faceShape);
+	drawMii(mii);
 
 	//printf("Skin: %i\n", mii.skinColor);
-	/*printf("Hair Color: %i\n", mii.hairColor);
-	printf("Eyebrow Color: %i\n", mii.eyebrowColor);
-	printf("Eye Color: %i\n", mii.eyeColor);
-	printf("Facial Hair Color: %i\n", mii.facialHairColor);
-	printf("Glases Color: %i\n", mii.glassesColor);*/
+	//printf("Hair Color: %i\n", mii.hairColor);
+	//printf("Eyebrow Color: %i\n", mii.eyebrowColor);
+	//printf("Eye Color: %i\n", mii.eyeColor);
+	//printf("Facial Hair Color: %i\n", mii.facialHairColor);
+	//printf("Glases Color: %i\n", mii.glassesColor);*/
 	//printf("Lip Color: %i\n", mii.lipColor);
 
 	if (mii.mole) printf("Has mole\n");
@@ -63,7 +92,9 @@ void clearScreen(){printf("\033[2J");printf("\x1b[2;0H");}
 int main(){
 	init();
 
-	loadMiis_Wii();
+	Mii * miis;
+
+	miis = loadMiis_Wii();
 
 	int n = 0;
 	int run = 1;

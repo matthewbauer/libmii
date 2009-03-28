@@ -15,9 +15,18 @@
 #define MII_HEADER					4
 
 
+#define RED							0
+#define ORANGE						1
+#define YELLOW						2
+#define LIGHT_GREEN					3
 #define GREEN						4
 #define BLUE						5
-#define BROWN						6
+#define LIGHT_BLUE					6
+#define PINK						7
+#define PURPLE						8
+#define BROWN						9
+#define WHITE						10
+#define BLACK						11
 
 typedef struct {
 	int invalid;            // doesn't seem to have any effect?
@@ -123,10 +132,8 @@ typedef struct {
 } Mii;
 #endif
 
-Mii miis[MII_MAX];
-
-void loadMiis_Wii();
-void loadMiis(char * data);
+Mii * loadMiis_Wii();
+Mii * loadMiis(char * data);
 
 #ifdef __cplusplus
    }

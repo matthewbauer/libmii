@@ -24,7 +24,7 @@ SOURCES		:=	source
 DATA		:=	data  
 INCLUDES	:=	$(DEVKITPRO)/libogc
 RELEASE		:=	release
-VERSION		:=	0.3c
+VERSION		:=	0.3d
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -120,7 +120,7 @@ $(RELEASE)/$(VERSION).tar.gz: $(OFILES)
 tar: $(RELEASE)/$(VERSION).tar.gz
 
 $(RELEASE)/source-$(VERSION).tar.gz: $(OFILES)
-	@tar -cvvzf $@ *
+	@tar -cvvzf $@ Makefile source apps
 	
 source-tar: $(RELEASE)/source-$(VERSION).tar.gz
 
