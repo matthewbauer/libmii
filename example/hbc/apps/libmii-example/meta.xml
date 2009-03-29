@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<app version="1">
-	<name>Libmii Example</name>
-	<coder>mjbauer95</coder>
-	<version>0.1alpha</version>
-	<release_date>200903210000</release_date>
-	<short_description>Example of libmii </short_description>
-	<long_description>An example of libmii. It shows each Mii entry as a name.</long_description>
-</app>
