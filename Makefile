@@ -19,7 +19,7 @@ include $(DEVKITPPC)/wii_rules
 TARGET		:=	build/$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
-DATA		:=	data  
+DATA		:=	data
 INCLUDES	:=	$(DEVKITPRO)/libogc
 RELEASE		:=	release
 VERSION		:=	0.3d
@@ -121,7 +121,7 @@ $(RELEASE)/$(VERSION).tar.gz: $(OFILES) $(OUTPUT).a $(SOURCES)/*.h
 
 $(RELEASE)/source-$(VERSION).tar.gz: $(OFILES)
 	@tar -cvvzf $@ data include source Makefile
-	
+
 source-tar: $(RELEASE)/source-$(VERSION).tar.gz
 
 tar: $(RELEASE)/$(VERSION).tar.gz

@@ -42,25 +42,25 @@ Mii loadMii(int start, char * data){
 	int c,d;
 	char tempChar;
 	for (c=0, d=0;d<MII_NAME_LENGTH;c++, d++){
-        tempChar = data[start + 0x02 + d * 2 + 1];
-        if(tempChar < 0x80)
-            mii.name[c] = tempChar;
-        else {
-            mii.name[c] = (((tempChar) >>  6) & 0x1F) | 0xC0;
-            c++;
-            mii.name[c] = ((tempChar) & 0x3F) | 0x80;
-        }
+		tempChar = data[start + 0x02 + d * 2 + 1];
+		if(tempChar < 0x80)
+			mii.name[c] = tempChar;
+		else {
+			mii.name[c] = (((tempChar) >>  6) & 0x1F) | 0xC0;
+			c++;
+			mii.name[c] = ((tempChar) & 0x3F) | 0x80;
+		}
 	}
 	mii.name[MII_NAME_LENGTH*2] = '\0';
 	for (c=0, d=0;d<MII_NAME_LENGTH;c++, d++){
-        tempChar = data[start + 0x36 + d * 2 + 1];
-        if(tempChar < 0x80)
-            mii.creator[c] = tempChar;
-        else {
-            mii.creator[c] = (((tempChar) >>  6) & 0x1F) | 0xC0;
-            c++;
-            mii.creator[c] = ((tempChar) & 0x3F) | 0x80;
-        }
+		tempChar = data[start + 0x36 + d * 2 + 1];
+		if(tempChar < 0x80)
+			mii.creator[c] = tempChar;
+		else {
+			mii.creator[c] = (((tempChar) >>  6) & 0x1F) | 0xC0;
+			c++;
+			mii.creator[c] = ((tempChar) & 0x3F) | 0x80;
+		}
 	}
 	mii.creator[MII_NAME_LENGTH*2] = '\0';
 

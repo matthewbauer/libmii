@@ -19,7 +19,7 @@ include $(DEVKITPPC)/wii_rules
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
-DATA		:=	data  
+DATA		:=	data
 INCLUDES	:=	$(DEVKITPRO)/libogc
 RELEASE		:=	release
 VERSION		:=	0.3d
@@ -114,12 +114,12 @@ run:
 $(RELEASE)/$(VERSION).tar.gz: $(OFILES)
 	@cp -T $(OUTPUT).dol apps/libmii-example/boot.dol
 	@tar -cvvzf $@ apps/
-	
+
 tar: $(RELEASE)/$(VERSION).tar.gz
 
 $(RELEASE)/source-$(VERSION).tar.gz: $(OFILES)
 	@tar -cvvzf $@ Makefile source apps
-	
+
 source-tar: $(RELEASE)/source-$(VERSION).tar.gz
 
 #---------------------------------------------------------------------------------

@@ -8,14 +8,14 @@
 #endif /* __cplusplus */
 
 #ifdef RNOD
-#define MII_NAME_LENGTH				10
-#define MII_CREATOR_LENGTH			10
-#define MII_SIZE 					74
+#define MII_NAME_LENGTH					10
+#define MII_CREATOR_LENGTH				10
+#define MII_SIZE                                        74
 #define MII_MAX						100
 #define MII_HEADER					4
 
 
-#define RED							0
+#define RED						0
 #define ORANGE						1
 #define YELLOW						2
 #define LIGHT_GREEN					3
@@ -48,8 +48,8 @@ typedef struct {
 	int weight;                 // 0 - 127
 
 // addr: 0x18 - 0x1B
-	int miiID1; 	           // Unique Mii identifier. Seems to increment with time. Also can
-	int miiID2; 	           // be used to change colour of Mii Trousers (see 'See Also' links)
+	int miiID1;                // Unique Mii identifier. Seems to increment with time. Also can
+	int miiID2;                // be used to change colour of Mii Trousers (see 'See Also' links)
 	int miiID3;
 	int miiID4;
 
